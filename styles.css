@@ -1,0 +1,142 @@
+/* Estilos generales */
+body {
+  background-color: #000000;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.profile-section {
+  background-color: #000000;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.profile-section img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  border: 3px solid white;
+}
+
+.profile-info h1,
+.profile-info p {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10%;
+  justify-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.social-item-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-item-container .social-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background-color: #131212;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.social-item-container .social-item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.social-item-container .social-item span {
+  font-size: 16px;
+  text-align: center;
+  padding: 5px;
+}
+
+.social-item-container .social-item:hover {
+  transform: scale(1.1);
+}
+
+.contact-section {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #000000;
+  color: #ffffff;
+  margin-top: 60px; /* Aumentar margin-top para bajar la sección */
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #131212;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: white;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+}
+/* Media queries para ajustar el diseño en dispositivos móviles */
+@media (max-width: 768px) {
+  .social-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 5%;
+  }
+
+  .social-item-container .social-item {
+    width: 80%; /* Ajustar ancho en dispositivos móviles */
+  }
+}

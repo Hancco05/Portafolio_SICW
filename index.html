@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portafolio Sebastian Ignacio Carmona Wright</title>
+  <link rel="icon" href="ruta/icono.png" type="image/png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+      .mensaje {
+          display: none; /* Ocultar el mensaje por defecto */
+          padding: 10px;
+          margin-top: 10px;
+          border-radius: 5px;
+      }
+      .exito {
+          color: green;
+          border: 1px solid green;
+      }
+      .error {
+          color: red;
+          border: 1px solid red;
+      }
+  </style>
+</head>
+<body>
+  <main class="container-fluid">
+    <section class="row profile-section py-5 bg-dark text-white">
+      <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <img src="foto.png" alt="Tu Foto" class="rounded-circle" style="width: 150px; height: 150px;">
+      </div>
+      <div class="col-md-8 d-flex align-items-center">
+        <div class="profile-info">
+          <h1 class="m-0">Sebastian Ignacio Carmona Wright</h1>
+          <p class="m-0">Ingenieria en informatica</p>
+          <p class="m-0">Software developer</p>
+          <p class="m-0">+(56) 961607915</p>
+          <p class="m-0">s.carmonawright@gmail.com</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="row social-grid py-5">
+      <div class="col-md-3 mb-4">
+        <div class="social-item-container">
+          <a href="https://www.linkedin.com/in/sebastian-ignacio-carmona-wright/" class="social-item d-block bg-dark text-white rounded p-3 text-center" id="linkedin">
+            <img src="linkedinn.png" alt="LinkedIn" class="img-fluid mb-2">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="social-item-container">
+          <a href="https://drive.google.com/drive/folders/1TL_STI3u_jX50Z-NqfW2u0RD4mi1Y4as?usp=drive_link" class="social-item d-block bg-dark text-white rounded p-3 text-center" id="drive">
+            <img src="drivee.png" alt="Google Drive" class="img-fluid mb-2">
+            Google Drive
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="social-item-container">
+          <a href="https://github.com/Hancco05" class="social-item d-block bg-dark text-white rounded p-3 text-center" id="github">
+            <img src="githubb.png" alt="GitHub" class="img-fluid mb-2">
+            GitHub
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="social-item-container">
+          <a href="documents/cv_sebastian.docx" class="social-item d-block bg-dark text-white rounded p-3 text-center" id="cv" download="cv_sebastian.docx">
+            <img src="cvv.png" alt="Currículum Vitae" class="img-fluid mb-2">
+            Currículum Vitae
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="row contact-section py-5 bg-dark text-white">
+      <div class="col-md-12 text-center">
+        <h2>Formulario de Contacto</h2>
+      </div>
+      <div class="col-md-6 offset-md-3">
+        <form id="contactForm" class="contact-form p-4 bg-dark text-white rounded">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="asunto" class="form-label">Asunto</label>
+            <input type="text" id="asunto" name="asunto" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" class="form-control" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+        </form>
+        <div class="mensaje" id="responseMessage"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#contactForm').submit(function(event) {
+        event.preventDefault(); // Evitar que se recargue la página
+
+        // Crear un objeto FormData
+        const formData = new FormData(this);
+
+        // Enviar los datos usando fetch API
+        fetch('enviar.php', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+          const messageDiv = $('#responseMessage');
+          messageDiv.show();
+
+          // Mostrar el mensaje de respuesta
+          messageDiv.html(data.includes('éxito') ? 
+            `<span class="exito">${data}</span>` : 
+            `<span class="error">${data}</span>`);
+        })
+        .catch(error => {
+          const messageDiv = $('#responseMessage');
+          messageDiv.show();
+          messageDiv.html(`<span class="error">Error al enviar: ${error}</span>`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
